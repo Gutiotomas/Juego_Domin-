@@ -7,4 +7,4 @@ class Jugador():
     def realizarJugada():
         pass
     def __str__(self):
-        return f"{self.mazo}"
+        return f"{self.tipo} {self.mazo}"

@@ -20,10 +20,10 @@ class Juego():
     def inicializarjugadores(self,numero):
         players = []
         for i in range(numero):
-            players += [Jugador("HUMANO", self.mazos[i])] 
+            players += [Jugador(f"HUMANO {i+1}", self.mazos[i])] 
         machines = []
-        for i in range(4 - numero):
-            machines += [Jugador("MAQUINA", self.mazos[i])]
+        for i in range(numero,4):
+            machines += [Jugador(f"MAQUINA {i -numero +1}", self.mazos[i])]
         return players + machines
 
 
