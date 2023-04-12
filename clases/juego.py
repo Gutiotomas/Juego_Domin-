@@ -39,9 +39,18 @@ class Juego():
         for i in juego.jugadores:
             if len(i.mazo.piezas) == 0:
                 Juego.EstadoJuego =False
+                i.ganador = True
+        if Jugada.turnosPaso > 5:
+            Juego.EstadoJuego =False
+    
+    def ganador(self):
+        #definir el ganador cuando no hay mas jugadas
+        pass
+
+
 
     def __str__(self):
-        return f"{self.jugadores[0]},\n\
-{self.jugadores[1]},\n\
-{self.jugadores[2]},\n\
+        return f"{self.jugadores[0]}\n\
+{self.jugadores[1]}\n\
+{self.jugadores[2]}\n\
 {self.jugadores[3]}"

@@ -5,12 +5,13 @@ class Jugador():
     def __init__(self, tipo,mazo):
         self.mazo = mazo
         self.tipo = tipo
+        self.ganador = False
     
     
     def realizarJugadaM(self):
-        if random()>=0.9: #arreglar para introducirle un nivel de "inteligencia"
-            Jugada("PASAR",None)
-            return "paso"
+        #if random()>=0.9: #arreglar para introducirle un nivel de "inteligencia"
+        #    Jugada("PASAR",None)
+        #    return "paso"
         posibleJugada = self.buscarCoincidencia(self.mazo)
 
         if posibleJugada == ([],[]):
@@ -32,7 +33,11 @@ class Jugador():
             return "paso"
     
 
-    def realizarJugadaH(self):
+    def realizarJugadaH(self,accion,pieza):
+        # hacer la jugada mediante entradas humanas
+        #Jugada(accion,pieza) 
+        #accion -> 0 = poner, 1 = Pasar
+        #pieza numero entre 0 y longitud -1 del mazo
         pass
 
     def buscarCoincidencia(self,mazo):

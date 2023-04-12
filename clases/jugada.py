@@ -1,11 +1,18 @@
 class Jugada():
     turno = 0
+    turnosPaso = 0
     def __init__(self, accion, pieza):
         self.accion = accion
         self.pieza = pieza
         Jugada.turno += 1
         if Jugada.turno >3:
             Jugada.turno = 0
+        if accion == "PASAR":
+            Jugada.turnosPaso +=1
+        else:
+            Jugada.turnosPaso = 0
+        
+        
 
     @classmethod
     def asignarTurnoInicial(src,jugadores):
@@ -45,7 +52,10 @@ class Jugada():
         mazo.piezasInv.remove(self.pieza[::-1])
 
     def probarJugada():
+        #comprobar si los parametros entregados por el jugador son validos
         pass
+
+
     def __str__(self):
         if self.accion == "PONER":
             return f"turno del jugador {self.turno}. accion = {self.accion}, donde puso {self.pieza}"

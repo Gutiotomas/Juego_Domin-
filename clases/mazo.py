@@ -30,5 +30,5 @@ class Mazo():
 
     
     def __str__(self):
-        return f"{self.piezas} {self.piezadoble}"
+        return f"{self.piezas}"
         
