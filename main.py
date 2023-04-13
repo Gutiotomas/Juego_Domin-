@@ -29,26 +29,21 @@ class Main():
         else: #se ve largo por la cantidad de entradas que tiene el codigo pero es facil de entender
             #mostrar por pantalla las opciones
             print(jugador.mazo)
-            print("Opciones: Poner ficha = 0, Pasar turno = 1.")
-            entrada, piezas, pos, desicion = int(input()), [],[], None
-            
-            if entrada == 0:
-                bucle = 1
-                #filtrar si hay posibilidad de una jugada doble
-                if jugador.mazo.piezadoble > 1:
-                    desicion = input("Tiene más de 2 fichas dobles, ¿desea realizar una jugada doble? y/n.\n")
-                    
-                    if desicion == "y":
-                        bucle = 2
+            print("Opciones: Pasar turno = 0, Poner ficha = 1, Jugada doble = 2")
+            entrada, piezas, pos = int(input()), [],[]
 
-                for _ in range(bucle):
-                    piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
-                    pos += [int(input("¿Dónde vas a poner la pieza? 0 para inicio, 1 para final.\n"))]
+            if entrada <0 or entrada > 2: 
+                print("Opcion invalida.")
+                return print(Juego.RegistroJugadas)
+
+            for _ in range(entrada):
+                piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
+                pos += [int(input("¿Dónde vas a poner la pieza? 0 para inicio, 1 para final.\n"))]
             
             #llamado a las funciones que es encargan de veriicar que las entradas funcionen
-            if desicion == "y":
+            if entrada == 2:
                 print(jugador.realizarJugadaHAux(entrada, piezas, pos))
-            elif entrada == 0:
+            elif entrada == 1:
                 print(jugador.realizarJugadaH(entrada, piezas[0], pos[0]))
             else:
                 print(jugador.realizarJugadaH(entrada, None, None))
@@ -64,9 +59,6 @@ class Main():
     def __str__(self):
         return f"{self.juego}"
         
-        
-        
-    
 
 #se debe llamar a main con X humanos
 Main(1)

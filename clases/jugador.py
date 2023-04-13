@@ -54,9 +54,7 @@ class Jugador():
     #tiene un monton de casos de exepcion
     def realizarJugadaH(self,accion,indexPieza,pos):
 
-        if accion != 0 and accion != 1: return "Jugada inválida."
-
-        if accion == 1:
+        if accion == 0:
             Jugada("PASAR",None)
             return f"{self.tipo} pasa el turno."
         
@@ -79,9 +77,7 @@ class Jugador():
     #funcion auxiliar para realizar 2 jugadas
     def realizarJugadaHAux(self,accion,indexPieza,pos):
 
-        if accion != 0 and accion != 1: return "Jugada inválida."
-
-        if accion == 1:
+        if accion == 0:
             Jugada("PASAR",None)
             return f"{self.tipo} pasa el turno."
         #almacenar las 2 posiciones de las fichas y las fichas
