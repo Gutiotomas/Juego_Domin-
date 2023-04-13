@@ -29,7 +29,7 @@ class Main():
         else: #se ve largo por la cantidad de entradas que tiene el codigo pero es facil de entender
             #mostrar por pantalla las opciones
             print(jugador.mazo)
-            print("=Opciones: Poner ficha = 0, Pasar turno = 1.")
+            print("Opciones: Poner ficha = 0, Pasar turno = 1.")
             entrada, piezas, pos, desicion = int(input()), [],[], None
             
             if entrada == 0:
