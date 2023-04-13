@@ -5,8 +5,10 @@ class Jugada():
         self.accion = accion
         self.pieza = pieza
         Jugada.turno += 1
+        
         if Jugada.turno >3:
             Jugada.turno = 0
+        
         if accion == "PASAR":
             Jugada.turnosPaso +=1
         else:
@@ -17,6 +19,7 @@ class Jugada():
     @classmethod
     def asignarTurnoInicial(src,jugadores):
         from clases.juego import Juego
+        
         j = 0
         for i in jugadores:
 
@@ -29,8 +32,8 @@ class Jugada():
                 i.mazo.piezas.remove("6:6")
                 i.mazo.piezasInv.remove("6:6")
                 i.mazo.piezadoble -= 1
-
                 break
+            
             j += 1
         
 
@@ -51,12 +54,30 @@ class Jugada():
         mazo.piezas.remove(self.pieza)
         mazo.piezasInv.remove(self.pieza[::-1])
 
-    def probarJugada():
-        #comprobar si los parametros entregados por el jugador son validos
-        pass
+    @classmethod
+    def probarJugada(cls,pieza,pos):
+        from clases.juego import Juego
+        
+        primera, ultima = Juego.RegistroJugadas[0][0],Juego.RegistroJugadas[-1][-1]
+        if pos == 0:
+            if pieza[-1] == primera:
+                return True,pieza,0
+            if pieza[0] == primera:
+                return True,pieza[::-1],0
+        else:
+            if pieza[0] == ultima:
+                return True,pieza,-1
+            if pieza[-1] == ultima:
+                return True,pieza[::-1],-1
+
+        #comprobar si los parametros entregados 
+        # por el jugador son validos
+
+        return False,None,None
 
 
     def __str__(self):
+        
         if self.accion == "PONER":
             return f"turno del jugador {self.turno}. accion = {self.accion}, donde puso {self.pieza}"
         else:
