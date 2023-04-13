@@ -12,7 +12,8 @@ class Juego():
         Jugada.asignarTurnoInicial(self.jugadores)
         
 
-
+    #genera una lista de las 28 fichas para jugar en el juego luego las reparte en 4 mazos
+    # retorna los mazos de los jugadores
     def inicializarMazos(self):
         
         ListaPiezas = [f"{a}:{b}" for a in range(0,7) for b in range(a,7)]
@@ -23,6 +24,10 @@ class Juego():
         
         return Mazos
 
+
+    #genera los 4 jugadores y dependiendo del parametro con el que se llamo al main pueden haber mas o menos "IA"s
+    #a cada jugador le asinga un mazo
+    # todos los jugadores son iguales entre si
     def inicializarjugadores(self,numero):
         
         players = []
@@ -41,6 +46,7 @@ class Juego():
 
 
 
+    #verifica el estado del juego y si alguien efectivamente ya gano
     def finalizar(self):
         
         for i in self.jugadores:
@@ -51,7 +57,9 @@ class Juego():
         if Jugada.turnosPaso > 5:
             Juego.EstadoJuego =False
             self.ganador()
-    
+
+
+    #en caso de que se llegue a un punto sin fichas posibles para colocar dicernir por menor cantidad de "puntos"
     def ganador(self):
         resultado = []
         for jugador in self.jugadores:
@@ -64,10 +72,6 @@ class Juego():
         
         Ganador = resultado.index(min(resultado))
         self.jugadores[Ganador].ganador = True
-
-        #definir el ganador cuando no hay mas jugadas
-        pass
-
 
 
     def __str__(self):

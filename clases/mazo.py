@@ -7,15 +7,17 @@ class Mazo():
         self.inicia = False
         self.piezadoble = piezadoble
         self.piezas = self.generarMazo(piezas)
-        self.piezasInv = self.invertirMazo(self.piezas)
+        self.piezasInv = self.invertirMazo(self.piezas) #generar un mazo inverso para simplificar las funciones de busqueda 
+  
         
-    
+    #genera un mazo con una muestra aleatoria de 7 de la baraja original con todas las piezas
     def generarMazo(self, piezas):
         
         lista = []
         for _ in range(7):
             pieza = piezas.pop(randint(0, len(piezas)-1))
             
+            #coloca de una vez la pieza 6:6 para inicializar el tablero
             if pieza == '6:6':
                 self.inicia = True
             
@@ -26,6 +28,9 @@ class Mazo():
             
         return lista
     
+
+    #invierte las piezas del mazo para simplificar como se ponen en el tablero 
+    #ejemplo 5:4 ahora pasa a ser 4:5
     def invertirMazo(self,mazo):
         
         lista = []
