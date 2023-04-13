@@ -29,21 +29,21 @@ class Main():
         else: #se ve largo por la cantidad de entradas que tiene el codigo pero es facil de entender
             #mostrar por pantalla las opciones
             print(jugador.mazo)
-            print("opciones: poner = 0 pasar = 1")
+            print("=Opciones: poner ficha = 0, pasar turno = 1")
             entrada, piezas, pos, desicion = int(input()), [],[], None
             
             if entrada == 0:
                 bucle = 1
                 #filtrar si hay posibilidad de una jugada doble
                 if jugador.mazo.piezadoble > 1:
-                    desicion = input("tiene mas de 2 fichas dobles, desea realizar una jugada doble? y/n\n")
+                    desicion = input("Tiene más de 2 fichas dobles, ¿desea realizar una jugada doble? y/n\n")
                     
                     if desicion == "y":
                         bucle = 2
 
                 for _ in range(bucle):
-                    piezas += [int(input(f"numero de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)})\n"))-1]
-                    pos += [int(input("Donde vas a poner la pieza? : 0 para inicio, 1 para final\n"))]
+                    piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)})\n"))-1]
+                    pos += [int(input("¿Dónde vas a poner la pieza? 0 para inicio, 1 para final\n"))]
             
             #llamado a las funciones que es encargan de veriicar que las entradas funcionen
             if desicion == "y":
@@ -69,4 +69,4 @@ class Main():
     
 
 #se debe llamar a main con X humanos
-Main(0)
+Main(1)
