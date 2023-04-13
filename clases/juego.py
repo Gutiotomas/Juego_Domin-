@@ -44,7 +44,6 @@ class Juego():
     def finalizar(self):
         
         for i in self.jugadores:
-            
             if len(i.mazo.piezas) == 0:
                 Juego.EstadoJuego =False
                 i.ganador = True
@@ -56,10 +55,13 @@ class Juego():
     def ganador(self):
         resultado = []
         for jugador in self.jugadores:
+            
             acum = 0
             for pieza in jugador.mazo.piezas:
                 acum += int(pieza[0]) + int(pieza[-1])
+            
             resultado.append(acum)
+        
         Ganador = resultado.index(min(resultado))
         self.jugadores[Ganador].ganador = True
 

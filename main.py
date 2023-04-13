@@ -10,6 +10,7 @@ class Main():
         print(Juego.RegistroJugadas)
         while Juego.EstadoJuego:
             self.jugar()
+        
         for i in self.juego.jugadores:
             if i.ganador:
                 print(f"{i.tipo} es el ganador")
@@ -24,11 +25,29 @@ class Main():
         else:
             print(jugador.mazo)
             print("opciones: poner = 0 pasar = 1")
-            entrada, pieza, pos = int(input()), None,None
+            entrada, piezas, pos, desicion = int(input()), [],[], None
+            
             if entrada == 0:
-                pieza = int(input(f"numero de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)})\n"))-1
-                pos = int(input("Donde vas a poner la pieza? : 0 para inicio, 1 para final\n"))
-            print(jugador.realizarJugadaH(entrada, pieza, pos))
+                bucle = 1
+                
+                if jugador.mazo.piezadoble > 1:
+                    desicion = input("tiene mas de 2 fichas dobles, desea realizar una jugada doble? y/n\n")
+                    
+                    if desicion == "y":
+                        bucle = 2
+
+                for _ in range(bucle):
+                    piezas += [int(input(f"numero de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)})\n"))-1]
+                    pos += [int(input("Donde vas a poner la pieza? : 0 para inicio, 1 para final\n"))]
+            
+            
+
+            if desicion == "y":
+                print(jugador.realizarJugadaHAux(entrada, piezas, pos))
+            elif entrada == 0:
+                print(jugador.realizarJugadaH(entrada, piezas[0], pos[0]))
+            else:
+                print(jugador.realizarJugadaH(entrada, None, None))
 
         print(Juego.RegistroJugadas)
         self.juego.finalizar()

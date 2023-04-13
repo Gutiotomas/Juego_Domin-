@@ -74,6 +74,27 @@ class Jugada():
         # por el jugador son validos
 
         return False,None,None
+    
+    def colocarDoble(self,mazo,pos1,pos2):
+        from clases.juego import Juego
+        
+        if pos1 == 0:
+            Juego.RegistroJugadas.insert(0,self.pieza[0])
+            Juego.RegistroJugadas += [self.pieza[1]]
+        else:
+            Juego.RegistroJugadas.insert(0,self.pieza[1])
+            Juego.RegistroJugadas += [self.pieza[0]]
+
+        for i in self.pieza:
+            if i[0] > i[-1]: 
+                i = i[::-1]
+
+            mazo.piezas.remove(i)
+            mazo.piezasInv.remove(i[::-1])
+            
+        mazo.piezadoble -= 2
+        
+        
 
 
     def __str__(self):

@@ -10,7 +10,22 @@ class Jugador():
     
     
     def realizarJugadaM(self):
+        from clases.juego import Juego
+
         posibleJugada = self.buscarCoincidencia(self.mazo)
+        dobles = self.buscarDobles(set(posibleJugada[0]+posibleJugada[-1]))
+        
+        if len(dobles) == 2:
+            doble = Jugada("PONER", dobles)
+            print(dobles,Juego.RegistroJugadas[0][0])
+            if dobles[0][0]==Juego.RegistroJugadas[0][0]:
+                pos1,pos2 = 0,-1
+            else:
+                pos1,pos2 = -1,0
+            
+            doble.colocarDoble(self.mazo, pos1,pos2)
+            return f"{self.tipo} ha puesto la pieza {dobles[0]} y la pieza {dobles[1]}"
+        
 
         if posibleJugada == ([],[]):
             Jugada("PASAR",None)
@@ -34,30 +49,54 @@ class Jugador():
     
 
     def realizarJugadaH(self,accion,indexPieza,pos):
-        if accion != 0 and accion != 1:
-            return "jugada invalida"
+
+        if accion != 0 and accion != 1: return "jugada invalida"
 
         if accion == 1:
             Jugada("PASAR",None)
             return "paso"
         
-        if indexPieza>=len(self.mazo.piezas):
-            return "jugada invalida"
+        if indexPieza>=len(self.mazo.piezas): return "jugada invalida"
 
-        if pos !=0 and pos!=1:
-            return "jugada invalida"
+        if pos !=0 and pos!=1: return "jugada invalida"
 
         piezaEnMazo = self.mazo.piezas[indexPieza]
-
         jugada,pieza,tipo = Jugada.probarJugada(piezaEnMazo,pos)
         
-        if not jugada:
-            return "jugada invalida"
+        if not jugada: return "jugada invalida"
         
         J = Jugada("PONER",pieza)
         J.colocarPieza(self.mazo,tipo) 
         return f"{self.tipo} ha puesto la pieza {pieza}"  
 
+    def realizarJugadaHAux(self,accion,indexPieza,pos):
+
+        if accion != 0 and accion != 1: return "jugada invalida"
+
+        if accion == 1:
+            Jugada("PASAR",None)
+            return "paso"
+        
+        piezas = []
+        tipos = []
+        for i in range(2):
+
+            if indexPieza[i]>=len(self.mazo.piezas): return "jugada invalida"
+
+            if pos[i] !=0 and pos[i]!=1: return "jugada invalida"
+
+            piezaEnMazo = self.mazo.piezas[indexPieza[i]]
+            jugada,pieza,tipo = Jugada.probarJugada(piezaEnMazo,pos[i])
+            
+            if not jugada: return "jugada invalida"
+            
+            piezas.append(pieza)
+            tipos.append(tipo)
+        
+        J = Jugada("PONER",piezas)
+        J.colocarDoble(self.mazo,tipos[0],tipos[1])
+        return f"{self.tipo} ha puesto la pieza {piezas[0]} y la pieza {piezas[1]}"
+        
 
     def buscarCoincidencia(self,mazo):
         from clases.juego import Juego
@@ -82,11 +121,13 @@ class Jugador():
 
         return NewCabeza,NewCola
 
+    def buscarDobles(self,lista):
+        doble = []
+        for i in list(lista):
+            if i[0]==i[-1]:
+                doble += [i]
+        return doble
+
 
     def __str__(self):
         return f"{self.tipo} {self.mazo}"
-    
-        if self.tipo[0] == "H":
-            return f"{self.tipo} {self.mazo}"
-        else:
-            return f"{self.tipo} {len(self.mazo.piezas)}"
