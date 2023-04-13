@@ -38,7 +38,7 @@ class Juego():
         
         machines = []
         for i in range(numero,4):
-            m = Jugador(f"MAQUINA {i -numero +1}", self.mazos[i])
+            m = Jugador(f"MÁQUINA {i -numero +1}", self.mazos[i])
             self.mazos[i].jugador = m
             machines += [m]
         

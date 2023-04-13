@@ -107,6 +107,6 @@ class Jugada():
     def __str__(self):
         
         if self.accion == "PONER":
-            return f"turno del jugador {self.turno}. accion = {self.accion}, donde puso {self.pieza}"
+            return f"Turno del jugador {self.turno}. accion = {self.accion}, donde puso {self.pieza}."
         else:
-            return f"el jugador {self.turno} ha pasado el turno"
+            return f"El jugador {self.turno} ha pasado el turno."
