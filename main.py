@@ -42,7 +42,7 @@ class Main():
                         bucle = 2
 
                 for _ in range(bucle):
-                    piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
+                    piezas += [int(input(f"Número de la posición de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
                     pos += [int(input("¿Dónde vas a poner la pieza? 0 para inicio, 1 para final.\n"))]
             
             #llamado a las funciones que es encargan de veriicar que las entradas funcionen
