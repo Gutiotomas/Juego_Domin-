@@ -25,29 +25,29 @@ class Jugador():
                 pos1,pos2 = -1,0
             
             doble.colocarDoble(self.mazo, pos1,pos2)
-            return f"{self.tipo} ha puesto la pieza {dobles[0]} y la pieza {dobles[1]}."
+            return f"{self.tipo} ha puesto la pieza {dobles[0]} y la pieza {dobles[1]}.",dobles,[abs(pos1),abs(pos2)]
         
         #en caso de que no tenga fichas para jugar
         if posibleJugada == ([],[]):
             Jugada("PASAR",None)
-            return f"{self.tipo} pasa el turno."
+            return f"{self.tipo} pasa el turno.",None,None
 
         #genera un 50% de probabilidades de elegir un lado o el otro, en caso de que el lado elegido no tenga items pasa
         if random()<=0.5 and posibleJugada[0]!= []: 
             cabeza =  posibleJugada[0][randint(0,len(posibleJugada[0])-1)]
             maquina = Jugada("PONER",cabeza)
             maquina.colocarPieza(self.mazo,0)
-            return f"{self.tipo} ha puesto la pieza {cabeza}."
+            return f"{self.tipo} ha puesto la pieza {cabeza}.",[cabeza],[1]
         
         elif posibleJugada[-1]!= []:
             cola =  posibleJugada[-1][randint(0,len(posibleJugada[-1])-1)]
             maquina = Jugada("PONER",cola)
             maquina.colocarPieza(self.mazo,-1)
-            return f"{self.tipo} ha puesto la pieza {cola}."
+            return f"{self.tipo} ha puesto la pieza {cola}.",[cola],[0]
         
         else:
             Jugada("PASAR",None)
-            return f"{self.tipo} pasa el turno."
+            return f"{self.tipo} pasa el turno.",None,None
     
 
     #realiza la jugada del jugador acpasa mediante el parametro tipo de cada jugador

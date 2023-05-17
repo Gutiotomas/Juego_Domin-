@@ -3,11 +3,13 @@ from clases.jugada import Jugada
 
 class Main():
 
-    def __init__(self,humanos):
+    def __init__(self,humanos=0):
         #inicializa el juego junto con los jugadores y maquinas
         self.juego = Juego(humanos)
-        
-        #bucle principal del juego
+
+        #quitar comillas para jugar sin interfaz grafica y habilitar 
+        # la ultima linea con la palabra "Main"
+        """#bucle principal del juego
         print(Juego.RegistroJugadas)
         while Juego.EstadoJuego:
             self.jugar()
@@ -15,7 +17,7 @@ class Main():
         #discriminar al ganador
         for i in self.juego.jugadores:
             if i.ganador:
-                print(f"{i.tipo} es el ganador.")
+                print(f"{i.tipo} es el ganador.")"""
 
 
     #funcion que ejecuta las entradas y salidas del juego     
@@ -24,7 +26,7 @@ class Main():
         jugador = self.juego.jugadores[Jugada.turno]
         
         if jugador.tipo[0]=="M": #ejecutar la "IA"
-            print(jugador.realizarJugadaM())
+            print(jugador.realizarJugadaM()[0])
         
         else: #se ve largo por la cantidad de entradas que tiene el codigo pero es facil de entender
             #mostrar por pantalla las opciones
@@ -61,4 +63,4 @@ class Main():
         
 
 #se debe llamar a main con X humanos
-Main(1)
+#Main(0)
