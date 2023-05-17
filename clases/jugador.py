@@ -18,7 +18,6 @@ class Jugador():
         #si encuentra 2 dobles si o si pone las dos fichas
         if len(dobles) == 2:
             doble = Jugada("PONER", dobles)
-            print(dobles,Juego.RegistroJugadas[0][0])
             if dobles[0][0]==Juego.RegistroJugadas[0][0]:
                 pos1,pos2 = 0,-1
             else:

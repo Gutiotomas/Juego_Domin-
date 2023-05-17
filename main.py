@@ -7,9 +7,7 @@ class Main():
         #inicializa el juego junto con los jugadores y maquinas
         self.juego = Juego(humanos)
 
-        #quitar comillas para jugar sin interfaz grafica y habilitar 
-        # la ultima linea con la palabra "Main"
-        """#bucle principal del juego
+        #bucle principal del juego
         print(Juego.RegistroJugadas)
         while Juego.EstadoJuego:
             self.jugar()
@@ -17,7 +15,7 @@ class Main():
         #discriminar al ganador
         for i in self.juego.jugadores:
             if i.ganador:
-                print(f"{i.tipo} es el ganador.")"""
+                print(f"{i.tipo} es el ganador.")
 
 
     #funcion que ejecuta las entradas y salidas del juego     

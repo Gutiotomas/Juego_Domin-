@@ -45,10 +45,10 @@ def colocarPieza(nombre, ubicacion, orientacion):
     x,y,c,d = 0,0,0,0
 
     if nombre == "6:6":
-        coordsI = (pantalla.get_rect().centerx - 12, pantalla.get_rect().centery)
-        coordsD = (pantalla.get_rect().centerx + 11, pantalla.get_rect().centery)
-        ficha = Ficha(nombre[0], coordsD,orientacion)
-        ficha2 = Ficha(nombre[-1], coordsI,orientacion)
+        coordsD = (pantalla.get_rect().centerx - 12, pantalla.get_rect().centery)
+        coordsI = (pantalla.get_rect().centerx + 11, pantalla.get_rect().centery)
+        ficha = Ficha(nombre[0], coordsI,orientacion)
+        ficha2 = Ficha(nombre[-1], coordsD,orientacion)
         coords = [coordsI,coordsD]
         return TodosSprites.add(ficha,ficha2)
 
@@ -71,7 +71,7 @@ def colocarPieza(nombre, ubicacion, orientacion):
         Coords = coords[1]
         coords[1] = Coords[0] + 2*x+c , Coords[1] + 2*y+d
     
-    if ubicacion == 0:
+    if ubicacion == 1:
         nombre = nombre[::-1]
 
     ficha = Ficha(nombre[0], (Coords[0] + x, Coords[1] + y) ,orientacion)
@@ -79,7 +79,7 @@ def colocarPieza(nombre, ubicacion, orientacion):
     TodosSprites.add(ficha,ficha2)
     return (Coords[0] + 2*x+c , Coords[1] + 2*y+d)
             
-def comprobarPosicion(anteriorOrientacion):
+def comprobarOrientacion(anteriorOrientacion):
     orientaciones = [0,1,2,3]
     mapping = {0: 2, 1: 3, 2: 0, 3: 1}
     orientaciones.pop(mapping[anteriorOrientacion])
@@ -107,11 +107,11 @@ TodosSprites = pygame.sprite.Group()
 #iniciar los sprites
 mazo = ['5:6', '0:4', '2:5', '3:6', '5:5', '3:5', '2:2']
 iniciarMazo(mazo)
-n1 = 0
-print(colocarPieza("6:6",0,n1))
-n1 = random.choice(comprobarPosicion(n1))
+print(colocarPieza("6:6",0,0))
+izqui = random.choice(comprobarOrientacion(2))
+dere = random.choice(comprobarOrientacion(0))
 
-juego = Main()
+juego = Juego(0)
 print(Juego.RegistroJugadas)
 
 keys = [pygame.K_1,pygame.K_2,pygame.K_3,pygame.K_4,pygame.K_5,pygame.K_6,pygame.K_7]
@@ -122,15 +122,20 @@ while True:
             pygame.quit()
             sys.exit()
     if Juego.EstadoJuego:
-        jugador = juego.juego.jugadores[Jugada.turno]
+        jugador = juego.jugadores[Jugada.turno]
         if jugador.tipo[0]=="M": #ejecutar la "IA"
             maquina = jugador.realizarJugadaM()
             print(maquina)
             if maquina[1] != None:
                 for i in range(len(maquina[1])):
-                    colocarPieza(maquina[1][i],maquina[2][i],n1)
-                n1 = random.choice(comprobarPosicion(n1))
-    juego.juego.finalizar()
+                    if maquina[2][i]==0:
+                        colocarPieza(maquina[1][i],maquina[2][i],dere)
+                        dere = random.choice(comprobarOrientacion(dere))
+                    else:
+                        colocarPieza(maquina[1][i],maquina[2][i],izqui)
+                        izqui = random.choice(comprobarOrientacion(izqui))
+    
+    juego.finalizar()
 
     
         
