@@ -24,7 +24,7 @@ class Jugador():
                 pos1,pos2 = -1,0
             
             doble.colocarDoble(self.mazo, pos1,pos2)
-            return f"{self.tipo} ha puesto la pieza {dobles[0]} y la pieza {dobles[1]}.",dobles,[abs(pos1),abs(pos2)]
+            return f"{self.tipo} ha puesto la pieza {dobles[0]} {Juego.obtenerPiezaUnicode(dobles[0],1)} y la pieza {dobles[1]} {Juego.obtenerPiezaUnicode(dobles[1],1)}.",dobles,[abs(pos1),abs(pos2)]
         
         #en caso de que no tenga fichas para jugar
         if posibleJugada == ([],[]):
@@ -36,13 +36,13 @@ class Jugador():
             cabeza =  posibleJugada[0][randint(0,len(posibleJugada[0])-1)]
             maquina = Jugada("PONER",cabeza)
             maquina.colocarPieza(self.mazo,0)
-            return f"{self.tipo} ha puesto la pieza {cabeza}.",[cabeza],[1]
+            return f"{self.tipo} ha puesto la pieza {cabeza} {Juego.obtenerPiezaUnicode(cabeza,1)}.",[cabeza],[1]
         
         elif posibleJugada[-1]!= []:
             cola =  posibleJugada[-1][randint(0,len(posibleJugada[-1])-1)]
             maquina = Jugada("PONER",cola)
             maquina.colocarPieza(self.mazo,-1)
-            return f"{self.tipo} ha puesto la pieza {cola}.",[cola],[0]
+            return f"{self.tipo} ha puesto la pieza {cola} {Juego.obtenerPiezaUnicode(cola,1)}.",[cola],[0]
         
         else:
             Jugada("PASAR",None)
@@ -52,7 +52,7 @@ class Jugador():
     #realiza la jugada del jugador acpasa mediante el parametro tipo de cada jugador
     #tiene un monton de casos de exepcion
     def realizarJugadaH(self,accion,indexPieza,pos):
-
+        from clases.juego import Juego
         if accion == 0:
             Jugada("PASAR",None)
             return f"{self.tipo} pasa el turno."
@@ -70,12 +70,12 @@ class Jugador():
         #juega la ficha en caso de que sea valida la jugada y haya pasado todos los filtros anteriores
         J = Jugada("PONER",pieza)
         J.colocarPieza(self.mazo,tipo) 
-        return f"{self.tipo} ha puesto la pieza {pieza}."  
+        return f"{self.tipo} ha puesto la pieza {pieza} {Juego.obtenerPiezaUnicode(pieza,1)}."  
 
 
     #funcion auxiliar para realizar 2 jugadas
     def realizarJugadaHAux(self,accion,indexPieza,pos):
-
+        from clases.juego import Juego
         if accion == 0:
             Jugada("PASAR",None)
             return f"{self.tipo} pasa el turno."
@@ -100,7 +100,7 @@ class Jugador():
         #juega las fichas en caso de que sea valida la jugada y haya pasado todos los filtros anteriores
         J = Jugada("PONER",piezas)
         J.colocarDoble(self.mazo,tipos[0],tipos[1])
-        return f"{self.tipo} ha puesto la pieza {piezas[0]} y la pieza {piezas[1]}."
+        return f"{self.tipo} ha puesto la pieza {piezas[0]} {Juego.obtenerPiezaUnicode(piezas[0],1)} y la pieza {piezas[1]} {Juego.obtenerPiezaUnicode(piezas[1],1)}."
 
 
     #funcion que hace que la "IA" busque todas las opciones de posibles jugadas

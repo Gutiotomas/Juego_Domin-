@@ -24,8 +24,10 @@ class Jugada():
 
         if posicion == 0:
             Juego.RegistroJugadas.insert(0,self.pieza)
+            Juego.RegistroUnicode = Juego.obtenerPiezaUnicode(self.pieza) + " " + Juego.RegistroUnicode
         else:
             Juego.RegistroJugadas += [self.pieza]
+            Juego.RegistroUnicode += " " + Juego.obtenerPiezaUnicode(self.pieza)
 
         if self.pieza[0] > self.pieza[-1]: 
             self.pieza = self.pieza[::-1]
@@ -44,9 +46,17 @@ class Jugada():
         if pos1 == 0:
             Juego.RegistroJugadas.insert(0,self.pieza[0])
             Juego.RegistroJugadas += [self.pieza[1]]
+
+            Juego.RegistroUnicode = Juego.obtenerPiezaUnicode(self.pieza[0]) + " " + Juego.RegistroUnicode
+            Juego.RegistroUnicode += " " + Juego.obtenerPiezaUnicode(self.pieza[1])
+
         else:
             Juego.RegistroJugadas.insert(0,self.pieza[1])
             Juego.RegistroJugadas += [self.pieza[0]]
+
+            Juego.RegistroUnicode = Juego.obtenerPiezaUnicode(self.pieza[1]) + " " + Juego.RegistroUnicode
+            Juego.RegistroUnicode += " " + Juego.obtenerPiezaUnicode(self.pieza[0])
+
 
         for i in self.pieza:
             if i[0] > i[-1]: 
@@ -94,6 +104,8 @@ class Jugada():
                 Jugada.turno = j
                 J = Jugada("PONER","6:6")
                 Juego.RegistroJugadas += [J.pieza]
+                Juego.RegistroUnicode += Juego.obtenerPiezaUnicode(J.pieza)
+                
 
                 #estructura utilizada para remover una pieza del mazo
                 i.mazo.piezas.remove("6:6")

@@ -8,7 +8,7 @@ class Main():
         self.juego = Juego(humanos)
 
         #bucle principal del juego
-        print(Juego.RegistroJugadas)
+        print(Juego.RegistroUnicode)
         while Juego.EstadoJuego:
             self.jugar()
         
@@ -34,7 +34,7 @@ class Main():
 
             if entrada <0 or entrada > 2: 
                 print("Opcion invalida.")
-                return print(Juego.RegistroJugadas)
+                return print(Juego.RegistroUnicode)
 
             for _ in range(entrada):
                 piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
@@ -49,7 +49,7 @@ class Main():
                 print(jugador.realizarJugadaH(entrada, None, None))
 
         #imprimir el tablero y varificar el estado del mismo
-        print(Juego.RegistroJugadas)
+        print(Juego.RegistroUnicode)
         self.juego.finalizar()
 
         if Juego.EstadoJuego == False:
@@ -61,4 +61,4 @@ class Main():
         
 
 #se debe llamar a main con X humanos
-#Main(0)
+Main(0)

@@ -5,6 +5,7 @@ class Juego():
     
     EstadoJuego = True #para verificar si alguien ya ganó
     RegistroJugadas = list() #para imprimir por pantalla las fichas
+    RegistroUnicode = ""
     
     def __init__(self, humanos):
         self.mazos = self.inicializarMazos()
@@ -23,7 +24,6 @@ class Juego():
             Mazos += [Mazo(ListaPiezas,7)]
         
         return Mazos
-
 
     #genera los 4 jugadores y dependiendo del parametro con el que se llamo al main pueden haber mas o menos "IA"s
     #a cada jugador le asinga un mazo
@@ -73,6 +73,16 @@ class Juego():
         Ganador = resultado.index(min(resultado))
         self.jugadores[Ganador].ganador = True
 
+    @classmethod
+    def obtenerPiezaUnicode(cls,nombre_pieza,voltear=0):
+
+        valores = nombre_pieza.split(":")
+        unicodePieza = 127025 + (int(valores[0])) * 7 + int(valores[1]) # Calcular el valor Unicode correspondiente a la pieza
+        if voltear == 1:
+            unicodePieza += 50
+        elif nombre_pieza[0] == nombre_pieza[-1]:
+            unicodePieza += 50
+        return chr(unicodePieza)
 
     def __str__(self):
         return f"{self.jugadores[0]}\n\
