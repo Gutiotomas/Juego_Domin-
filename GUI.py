@@ -1,7 +1,6 @@
 import pygame, sys, random
 from clases.juego import Juego
 from clases.jugada import Jugada
-from main import Main
 
 
 def reaccionar():

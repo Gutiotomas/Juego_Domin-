@@ -83,6 +83,17 @@ class Juego():
         elif nombre_pieza[0] == nombre_pieza[-1]:
             unicodePieza += 50
         return chr(unicodePieza)
+    
+    @classmethod
+    def ImprimirBonito(cls):
+        
+        tablero = ""
+        
+        for i in range(len(Juego.RegistroJugadas)):
+            tablero += Juego.RegistroJugadas[i] + "|"
+            
+        return tablero.rstrip("|")
+            
 
     def __str__(self):
         return f"{self.jugadores[0]}\n\

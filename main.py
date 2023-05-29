@@ -9,6 +9,8 @@ class Main():
 
         #bucle principal del juego
         print(Juego.RegistroUnicode)
+        print(Juego.ImprimirBonito())
+
         while Juego.EstadoJuego:
             self.jugar()
         
@@ -34,7 +36,8 @@ class Main():
 
             if entrada <0 or entrada > 2: 
                 print("Opcion invalida.")
-                return print(Juego.RegistroUnicode)
+                return print(Juego.RegistroUnicode),print(Juego.ImprimirBonito())
+
 
             for _ in range(entrada):
                 piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
@@ -50,6 +53,7 @@ class Main():
 
         #imprimir el tablero y varificar el estado del mismo
         print(Juego.RegistroUnicode)
+        print(Juego.ImprimirBonito())
         self.juego.finalizar()
 
         if Juego.EstadoJuego == False:
