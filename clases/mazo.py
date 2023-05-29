@@ -46,6 +46,6 @@ class Mazo():
         stringmazo= "".join([i + "\t" for i in self.piezas])
         mazoBonito = "".join([Juego.obtenerPiezaUnicode(i,1) + "\t" for i in self.piezas])
         if len(self.piezas) == 0:
-            return "\n" + "".join([chr(127074) + "\t" for _ in range(3)])
+            return "\n" + "[----------Vacío-----------]"
         return "\n" + stringmazo + "\n" + mazoBonito
         

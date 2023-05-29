@@ -11,6 +11,7 @@ class Main():
         print(self.juego.jugadores[(Jugada.turno-1)%4].tipo,"ha puesto la pieza 6:6",Juego.obtenerPiezaUnicode("6:6",1))
         print(Juego.RegistroUnicode)
         print(Juego.ImprimirBonito())
+        print()
 
         while Juego.EstadoJuego:
             self.jugar()
@@ -18,7 +19,7 @@ class Main():
         #discriminar al ganador
         for i in self.juego.jugadores:
             if i.ganador:
-                print(f"{i.tipo} es el ganador.")
+                print(f"\n\n{i.tipo} es el ganador.\n\n")
 
 
     #funcion que ejecuta las entradas y salidas del juego     
@@ -33,17 +34,30 @@ class Main():
             #mostrar por pantalla las opciones
             print(jugador.mazo)
             print("Opciones: Pasar turno = 0, Poner ficha = 1, Jugada doble = 2")
-            entrada, piezas, pos = int(input()), [],[]
-
+            entrada, piezas, pos = input(), [],[]
+            
+            if entrada.isdigit():
+                entrada = int(entrada)
+            else:
+                print("Opcion invalida.")
+                return print(Juego.RegistroUnicode),print(Juego.ImprimirBonito())
+            
             if entrada <0 or entrada > 2: 
                 print("Opcion invalida.")
                 return print(Juego.RegistroUnicode),print(Juego.ImprimirBonito())
 
-
             for _ in range(entrada):
-                piezas += [int(input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n"))-1]
-                pos += [int(input("¿Dónde vas a poner la pieza? 0 para inicio, 1 para final.\n"))]
-            
+                
+                pieza = input(f"Número de la posicion de la pieza(del 1 al {len(jugador.mazo.piezas)}).\n")
+                posicion = input("¿Dónde vas a poner la pieza? Inicio = 0, Final = 1\n")
+                
+                if not (pieza.isdigit() and posicion.isdigit()):
+                    print("Opcion invalida.")
+                    return print(Juego.RegistroUnicode),print(Juego.ImprimirBonito())
+                
+                piezas += [int(pieza)-1]
+                pos += [int(posicion)]
+                
             #llamado a las funciones que es encargan de veriicar que las entradas funcionen
             if entrada == 2:
                 print(jugador.realizarJugadaHAux(entrada, piezas, pos))
@@ -55,6 +69,7 @@ class Main():
         #imprimir el tablero y varificar el estado del mismo
         print(Juego.RegistroUnicode)
         print(Juego.ImprimirBonito())
+        print()
         self.juego.finalizar()
 
         if Juego.EstadoJuego == False:
@@ -76,4 +91,4 @@ class Main():
         
 
 #se debe llamar a main con X humanos
-Main(1)
+Main(0)
