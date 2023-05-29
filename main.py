@@ -6,8 +6,9 @@ class Main():
     def __init__(self,humanos=0):
         #inicializa el juego junto con los jugadores y maquinas
         self.juego = Juego(humanos)
-
+        self.Inicio()
         #bucle principal del juego
+        print(self.juego.jugadores[(Jugada.turno-1)%4].tipo,"ha puesto la pieza 6:6",Juego.obtenerPiezaUnicode("6:6",1))
         print(Juego.RegistroUnicode)
         print(Juego.ImprimirBonito())
 
@@ -59,10 +60,20 @@ class Main():
         if Juego.EstadoJuego == False:
             print(self.juego)
 
+    def Inicio(self):
+        print("\n───────────────────────────────────────────────────\n\
+             Bienvenido al juego Dominó\n\
+            \n\
+            Recuerda usar un complilador\n\
+                con capacidad unicode\n\
+            \n\
+            Presiona 'Enter' para continuar\n\
+──────────────────────────────────────────────────")
+        return input()
 
     def __str__(self):
         return f"{self.juego}"
         
 
 #se debe llamar a main con X humanos
-Main(0)
+Main(1)

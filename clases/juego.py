@@ -42,7 +42,7 @@ class Juego():
             self.mazos[i].jugador = m
             machines += [m]
         
-        return players + machines
+        return machines + players
 
 
 
